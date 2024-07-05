@@ -128,4 +128,4 @@ The purpose of evaluation.py is to evaluate any trained models and generate fina
 
 ## Additional Files
 
-Include brief descriptions of auxiliary files in codebase.
+Will include brief descriptions of auxiliary files in codebase.

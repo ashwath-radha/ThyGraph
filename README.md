@@ -128,4 +128,64 @@ The purpose of evaluation.py is to evaluate any trained models and generate fina
 
 ## Additional Files
 
-Will include brief descriptions of auxiliary files in codebase.
+The remaining files provide supporting functionality to the core files in this codebase. They are described below.
+
+**models**
+
+*gcn.py*
+
+This file defines various graph-based models such as graph convolutional networks, graph attention networks and networks including self-attention graph pooling.
+
+*mil.py*
+
+This file defines various MIL and attention-based MIL model variations.
+
+*resnet.py*
+
+This file primarily defines the ensemble backbone for ultrasound image feature extraction in the ResNetPretrained class.
+
+**utils**
+
+*dataset_bags.py*
+
+This file defines the Dataset class for loading in the ultrasound image features and cytology label for a given patient.
+
+*dataset_graphs.py*
+
+This file defines the Dataset class for loading in the patient graph modeling an image study and its corresponding image features.
+
+*dataset_patches.py*
+
+This file defines the Dataset class for loading in the series of patch-based features extracted for a patient's image study.
+
+*dataset_raw.py*
+
+This file defines the Dataset class for loading the raw ultrasound images for each patient for feature extraction. 
+
+*dataset_wang.py*
+
+This file defines the Dataset class for loading in an input in accordance with the Wang et al. paper ("Automatic diagnosis for thyroid nodules in ultrasound images by deep neural networks") which is used as a baseline.
+
+*extract_labels.py*
+
+This file includes implementation for automatic label extraction (cytology and TI-RADS) from biopsy reports and ultrasound reports.
+
+*graph_utils.py*
+
+This file includes implementation for supporting graph construction based on different edge determination methods.
+
+*interpetability.py*
+
+This file includes implementation for calculating attention heatmaps based of MIL-based model outputs.
+
+*loss_function.py*
+
+This file includes implementation for various loss functions used to train proposed deep learning models.
+
+*train.py*
+
+This file includes implementation for training MIL- and graph-based models, as well as the Wang baseline.
+
+*utils.py*
+
+This file includes implementation for various utility functions such as early stopping and initializing model weights prior to training.

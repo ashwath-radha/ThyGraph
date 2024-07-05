@@ -76,12 +76,56 @@ The core files in this codebase are: main.py, feature_extraction.py, evaluation.
 
 ### 1. Data preprocessing - data_processing.py
 
-The purpose of data_processing.py is to establish the final cohort for experiments 
+The purpose of data_processing.py is to establish the final cohort for experiments. It is possible to create a train/validation/test split as well as a stratified 5-fold cross validation split.
+
+Required arguments:
++ input_csv -- path to the csv file which contains patients’ information
++ output_csv - path to the csv file which stores the output label and path for each image file
++ split_dir - path to splits directory
++ n_splits - number of splits (if 0 it will create a train/validation/test split, if >0 it will create that many CV folds)
++ data_path -- path to the raw data
 
 ### 2. Feature extraction - feature_extraction.py
 
+The purpose of feature_extraction.py is to extract deep features from ultrasound images using various model architectures.
+
+Required arguments:
++ output - path to the output directory
++ dataroot - path to the raw data (class_data in box drive)
++ csv_file - path to the csv file which contains patients’ information
++ gpu - Which gpu to use
+
 ### 3. Graph construction - graph_construction.py
+
+The purpose of graph_construction.py is to construct a patient-level graph for each patient's image study. Includes functionality to use different edge construction heuristics such as feature similarity and image anatomical location.
+
+Required arguments:
++ input_features - path to the input directory with pre-extracted features
++ output - path to output directory for storing graphs
++ dataroot - path to input directory with ultrasound image studies
++ csv_file - path to the csv file which stores the label and path for each image file
++ edge_method - method for making edges for each graph
++ gpu - Which gpu to use
 
 ### 4. Training - main.py
 
+The purpose of main.py is to train the MIL- or graph-based models either on the pre-extracted image features or patient graphs to predict nodule malignancy.
+
+Required arguments:
+
++ output - path to results directory
++ exp - name of experiment
++ dataroot - path to input directory with ultrasound image studies
++ features_root - path to the input directory with pre-extracted features (if training a graph model, pick the equivalent directory with patient graphs)
++ csv_file - path to the csv file which stores the label and path for each image file
++ splitroot - path to cross validation splits
++ log - include parameter to turn on tensorboard logging
++ gpu - Which gpu to use
+
 ### 5. Evaluation - evaluation.py
+
+The purpose of evaluation.py is to evaluate any trained models and generate final performance metrics. It is also used to generate attention heatmaps for the MIL-based models. Moving forward, it will also include implementation to generate the thyroid mesh model heatmaps to visualize attention for the graph-based models.
+
+## Additional Files
+
+Include brief descriptions of auxiliary files in codebase.
